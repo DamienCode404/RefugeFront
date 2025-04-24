@@ -1,16 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConnexionComponent } from './pages/connexion/connexion.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { InscriptionComponent } from './pages/inscription/inscription.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
+import { AdminUtilisateursComponent } from './pages/admin-utilisateurs/admin-utilisateurs.component';
+import { AdminAnimauxComponent } from './pages/admin-animaux/admin-animaux.component';
+import { AdminBoutiqueComponent } from './pages/admin-boutique/admin-boutique.component';
+import { BoutiqueComponent } from './pages/boutique/boutique.component';
+import { PanierComponent } from './pages/panier/panier.component';
+import { BenevoleProfileComponent } from './pages/benevole-profile/benevole-profile.component';
+import { BenevoleAjoutComponent } from './pages/benevole-ajout/benevole-ajout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConnexionComponent,
+    NavigationComponent,
+    InscriptionComponent,
+    AccueilComponent,
+    AdminUtilisateursComponent,
+    AdminAnimauxComponent,
+    AdminBoutiqueComponent,
+    BoutiqueComponent,
+    PanierComponent,
+    BenevoleProfileComponent,
+    BenevoleAjoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
