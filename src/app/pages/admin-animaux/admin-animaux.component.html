@@ -13,10 +13,8 @@
 
     <div class="input-group mb-3">
         <span class="input-group-text">Date de naissance</span>
-        <input type="date" class="form-control" [value]="editingAnimal?.naissance" />
+        <input type="date" class="form-control" formControlName="naissance" [value]="editingAnimal?.naissance" />
     </div>
-
-    <asc-text-field label="Date" formControlName="naissance" type="date"/>
 
     <div *ngIf="animalForm.get('naissance')?.hasError('required')" class="alert alert-danger">
         La date de naissance est obligatoire
