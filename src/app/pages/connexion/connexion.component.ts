@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { AuthRequest } from '../../auth-request';
+import { AuthResponse } from '../../auth-response';
 
 @Component({
   selector: 'app-connexion',

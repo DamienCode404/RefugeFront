@@ -9,10 +9,12 @@ import { environment } from '../environment';
 })
 export class AuthService {
   public token: string = "";
+  public user!:any;
   private API_URL: string = `${ environment.API_URL }/connexion`;
 
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token') as string;
+    this.user = JSON.parse(localStorage.getItem('user') as string) as any;
   }
 
   public authenticate(authRequest: AuthRequest) {
@@ -21,7 +23,9 @@ export class AuthService {
       password: authRequest.password
     }).subscribe(resp => {
       this.token = resp.token;
-      localStorage.setItem('token', this.token)
+      this.user = resp;
+      localStorage.setItem('token', this.token);
+      localStorage.setItem('user', JSON.stringify(this.user));
     });
   }
 }
