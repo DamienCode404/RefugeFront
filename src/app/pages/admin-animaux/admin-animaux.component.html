@@ -1,1 +1,63 @@
-<p>admin-animaux works!</p>
+<form (ngSubmit)="addOrEditAnimal()" [formGroup]="animalForm">
+    <asc-text-field label="Nom" formControlName="nom" />
+  
+    <div *ngIf="animalForm.get('nom')?.hasError('required')" class="alert alert-danger">
+        Le nom est obligatoire
+    </div>
+
+    <asc-text-field label="Race" formControlName="race" />
+  
+    <div *ngIf="animalForm.get('race')?.hasError('required')" class="alert alert-danger">
+        La race est obligatoire
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Date de naissance</span>
+        <input type="date" class="form-control" [value]="editingAnimal?.naissance" />
+    </div>
+
+    <asc-text-field label="Date" formControlName="naissance" type="date"/>
+
+    <div *ngIf="animalForm.get('naissance')?.hasError('required')" class="alert alert-danger">
+        La date de naissance est obligatoire
+    </div>
+
+    <asc-text-field label="Description" formControlName="description" />
+  
+    <div *ngIf="animalForm.get('description')?.hasError('required')" class="alert alert-danger">
+        La description est obligatoire
+    </div>
+
+    @if (editingAnimal) {
+        <input type="submit" [disabled]="animalForm.invalid" class="btn btn-warning" value="Modifier" />
+    }
+
+    @else {
+        <input type="submit" [disabled]="animalForm.invalid" class="btn btn-success" value="Ajouter" />
+    }
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Race</th>
+            <th>Date de naissance</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+
+        <tr *ngFor="let animal of animal$ | async">
+            <td>{{ animal.nom }}</td>
+            <td>{{ animal.race }}</td>
+            <td>{{ animal.naissance }}</td>
+            <td>{{ animal.description }}</td>
+            <td>
+                <div class="btn-group">
+                    <div class="btn btn-warning" (click)="editAnimal(animal)">Modifier</div>
+                    <div class="btn btn-danger" (click)="deleteAnimal(animal)">Supprimer</div>
+                </div>
+            </td>
+        </tr>
+    </thead>
+</table>
