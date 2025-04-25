@@ -1,5 +1,11 @@
 export class Produit {
-    constructor(private _id: number, private _libelle: string, private _description: string, private _prix: number, private _stock: number) { }
+    public get imageBase64(): string {
+        return this._imageBase64;
+    }
+    public set imageBase64(value: string) {
+        this._imageBase64 = value;
+    }
+    constructor(private _id: number, private _libelle: string, private _description: string, private _prix: number, private _stock: number, private _imageBase64: string) { }
     
     public get id(): number {
         return this._id;
