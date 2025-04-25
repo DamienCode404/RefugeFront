@@ -10,14 +10,14 @@ import { BenevoleProfileComponent } from './pages/benevole-profile/benevole-prof
 import { BoutiqueComponent } from './pages/boutique/boutique.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { PanierComponent } from './pages/panier/panier.component';
-
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: AccueilComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'admin-animaux', component: AdminAnimauxComponent },
   { path: 'admin-boutique', component: AdminBoutiqueComponent },
-  { path: 'admin-utilisateurs', component: AdminUtilisateursComponent },
+  { path: 'admin-utilisateurs', component: AdminUtilisateursComponent, canActivate: [ authGuard ] },
   { path: 'benevole-ajout', component: BenevoleAjoutComponent },
   { path: 'benevole-profile', component: BenevoleProfileComponent },
   { path: 'boutique', component: BoutiqueComponent },
