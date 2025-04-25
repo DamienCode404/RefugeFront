@@ -2,11 +2,15 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col" *ngFor="let produit of produits$ | async">
         <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">{{ produit.libelle }}</h5>
-            <p class="card-text">{{ produit.description }}</p>
-            <p class="card-text fw-bold">{{ produit.prix }} €</p>
-          </div>
+            
+                <img src="data:image/*;base64,{{ produit.imageBase64 }}" class="card-img-top" alt="{{ produit.libelle }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ produit.libelle }}</h5>
+                  <p class="card-text">{{ produit.description }}</p>
+                  <p class="card-text fw-bold">{{ produit.prix }} €</p>
+                </div>
+           
+              
   
           <div class="card-footer d-flex justify-content-between align-items-center">
             <small 
