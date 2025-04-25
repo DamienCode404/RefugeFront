@@ -1,1 +1,21 @@
-<p>benevole-profile works!</p>
+Vos animaux
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Race</th>
+            <th>Date de naissance</th>
+            <th>Description</th>
+        </tr>
+
+        <tr *ngFor="let animal of animal$ | async">
+            @if (animal.idWorker == id){
+                <td>{{ animal.nom }}</td>
+                <td>{{ animal.race }}</td>
+                <td>{{ animal.naissance }}</td>
+                <td>{{ animal.description }}</td>
+            }
+        </tr>
+    </thead>
+</table>
