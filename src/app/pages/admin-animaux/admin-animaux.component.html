@@ -42,6 +42,7 @@
             <th>Race</th>
             <th>Date de naissance</th>
             <th>Description</th>
+            <th>ID worker</th>
             <th></th>
         </tr>
 
@@ -50,6 +51,7 @@
             <td>{{ animal.race }}</td>
             <td>{{ animal.naissance }}</td>
             <td>{{ animal.description }}</td>
+            <td>{{ animal.idWorker }}</td>
             <td>
                 <div class="btn-group">
                     <div class="btn btn-warning" (click)="editAnimal(animal)">Modifier</div>
