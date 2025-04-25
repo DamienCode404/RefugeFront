@@ -18,12 +18,24 @@ export class AdminBoutiqueComponent implements OnInit, OnDestroy  {
 
   constructor(private service: ProduitService, private formBuilder: FormBuilder) { }
 
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement)?.files?.[0]; 
+    const reader = new FileReader();
+    reader.readAsDataURL(file!);
+    reader.onload = () => {
+        this.produitForm.patchValue({ imageBase64: reader.result});
+    };
+   
+  }
   ngOnInit(): void {
     this.produitForm = this.formBuilder.group({
       libelle: this.formBuilder.control('', Validators.required),
       description: this.formBuilder.control('', Validators.required),
       prix: this.formBuilder.control('', Validators.required),
-      stock: this.formBuilder.control('', Validators.required)
+      stock: this.formBuilder.control('', Validators.required),
+      imageBase64: this.formBuilder.control('', Validators.required)
+
     });
     
     this.produits$ = this.service.findAll();
@@ -42,6 +54,7 @@ export class AdminBoutiqueComponent implements OnInit, OnDestroy  {
       id: this.editingProduit?.id,
       ...this.produitForm.value
     };
+
 
     this.subscriptions['addOrEdit'] = this.service.save(produitData).subscribe(() => {
       this.service.refresh();

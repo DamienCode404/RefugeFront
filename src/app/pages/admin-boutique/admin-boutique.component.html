@@ -4,22 +4,24 @@
         Le libellé est obligatoire
     </div>
 
-    <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm">
+    <!-- <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm"> -->
         <asc-text-field label="Description" formControlName="description" />
         <div *ngIf="produitForm.get('description')?.hasError('required')" class="alert alert-danger">
             La description est obligatoire
         </div>
 
-    <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm">
+    <!-- <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm"> -->
         <asc-text-field label="Prix" formControlName="prix" />
          <div *ngIf="produitForm.get('prix')?.hasError('required')" class="alert alert-danger">
              Le prix est obligatoire
          </div>
-    <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm">
+    <!-- <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm"> -->
           <asc-text-field label="Stock" formControlName="stock" />
           <div *ngIf="produitForm.get('stock')?.hasError('required')" class="alert alert-danger">
             Le stock est obligatoire
          </div>
+
+       <input formControlName="image" (change)="onImagePicked($event)" type="file" accept="image/*" />  
     @if (editingProduit) {
         <input type="submit" [disabled]="produitForm.invalid" class="btn btn-warning" value="Modifier" />
     }
