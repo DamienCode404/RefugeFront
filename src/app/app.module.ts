@@ -16,6 +16,7 @@ import { BoutiqueComponent } from './pages/boutique/boutique.component';
 import { PanierComponent } from './pages/panier/panier.component';
 import { BenevoleProfileComponent } from './pages/benevole-profile/benevole-profile.component';
 import { BenevoleAjoutComponent } from './pages/benevole-ajout/benevole-ajout.component';
+import { jwtHeaderInterceptor } from './jwt-header.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,10 +37,11 @@ import { BenevoleAjoutComponent } from './pages/benevole-ajout/benevole-ajout.co
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ])) // Remplace l'import de HttpClientModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
