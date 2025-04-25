@@ -31,13 +31,14 @@ import { jwtHeaderInterceptor } from './jwt-header.interceptor';
     BoutiqueComponent,
     PanierComponent,
     BenevoleProfileComponent,
-    BenevoleAjoutComponent
+    BenevoleAjoutComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule 
   ],
   providers: [
     provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ])) // Remplace l'import de HttpClientModule
