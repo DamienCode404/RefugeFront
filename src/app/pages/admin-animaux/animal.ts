@@ -1,6 +1,6 @@
 export class Animal {
 
-    constructor(private _id: number, private _nom: string, private _race: string, private _naissance: string, private _description: string) {}
+    constructor(private _id: number, private _nom: string, private _race: string, private _naissance: string, private _description: string, private _idWorker : number|null) {}
 
 public get id()
 {
@@ -50,6 +50,16 @@ public get description()
 public set description(value : string)
 {
     this._description = value;
+}
+
+public get idWorker()
+{
+    return this._idWorker;
+}
+
+public set idWorker(value : number|null)
+{
+    this._idWorker = value;
 }
 
 }
