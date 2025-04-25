@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Utilisateurs } from './utilisateurs';
+import { UtilisateursService } from './utilisateurs.service';
 
 @Component({
   selector: 'app-admin-utilisateurs',
@@ -7,5 +11,70 @@ import { Component } from '@angular/core';
   styleUrl: './admin-utilisateurs.component.css'
 })
 export class AdminUtilisateursComponent {
+  utilisateursForm!: FormGroup;
+  utilisateurs$!: Observable<Utilisateurs[]>;
+  editingUtilisateurs!: Utilisateurs | null;
+  subscriptions: any = [];
 
+  constructor(private service: UtilisateursService, private formBuilder: FormBuilder) {}
+  
+  ngOnInit(): void {
+    this.utilisateursForm = this.formBuilder.group({
+      utilisateurType: ['', Validators.required],
+      login: ['', Validators.required],
+      password: ['', Validators.required],
+      lastName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', Validators.required]
+    });
+
+    this.utilisateurs$ = this.service.findAll();
+  }
+
+  ngOnDestroy(): void {
+    this.unsub('addOrEdit');
+    this.unsub('delete');
+  }
+
+  public addOrEditUtilisateurs(): void {
+    this.unsub('addOrEdit');
+
+    const utilisateurData = {
+      id: this.editingUtilisateurs?.id,
+      ...this.utilisateursForm.value
+    };
+
+    this.subscriptions['addOrEdit'] = this.service.save(utilisateurData).subscribe(() => {
+      this.service.refresh();
+      this.utilisateursForm.reset();
+      this.editingUtilisateurs = null;
+    });
+  }
+
+  public editUtilisateurs(utilisateur: Utilisateurs): void {
+    this.utilisateursForm.patchValue({
+      utilisateurType: utilisateur.utilisateurType,
+      login: utilisateur.login,
+      password: utilisateur.password,
+      lastName: utilisateur.lastName,
+      firstName: utilisateur.firstName,
+      email: utilisateur.email,
+      phoneNumber: utilisateur.phoneNumber
+    });
+    this.editingUtilisateurs = utilisateur;
+  }
+
+  public deleteUtilisateurs(utilisateurs: Utilisateurs) {
+    this.unsub('delete');
+
+    this.subscriptions['delete'] = this.service.delete(utilisateurs).subscribe(() => this.service.refresh());
+  }
+
+  private unsub(name: string) {
+    if (this.subscriptions[name]) {
+      this.subscriptions[name].unsubscribe();
+      this.subscriptions[name] = null;
+    }
+  }
 }

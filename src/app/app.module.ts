@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { PanierComponent } from './pages/panier/panier.component';
 import { BenevoleProfileComponent } from './pages/benevole-profile/benevole-profile.component';
 import { BenevoleAjoutComponent } from './pages/benevole-ajout/benevole-ajout.component';
 import { jwtHeaderInterceptor } from './jwt-header.interceptor';
+import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { jwtHeaderInterceptor } from './jwt-header.interceptor';
     BoutiqueComponent,
     PanierComponent,
     BenevoleProfileComponent,
-    BenevoleAjoutComponent
+    BenevoleAjoutComponent,
+    AscTextFieldComponent
   ],
   imports: [
     BrowserModule,
