@@ -1,14 +1,29 @@
 <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm">
     <asc-text-field label="Libellé" formControlName="libelle" />
-
     <div *ngIf="produitForm.get('libelle')?.hasError('required')" class="alert alert-danger">
         Le libellé est obligatoire
     </div>
 
+    <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm">
+        <asc-text-field label="Description" formControlName="description" />
+        <div *ngIf="produitForm.get('description')?.hasError('required')" class="alert alert-danger">
+            La description est obligatoire
+        </div>
+
+    <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm">
+        <asc-text-field label="Prix" formControlName="prix" />
+         <div *ngIf="produitForm.get('prix')?.hasError('required')" class="alert alert-danger">
+             Le prix est obligatoire
+         </div>
+    <form (ngSubmit)="addOrEditProduit()" [formGroup]="produitForm">
+          <asc-text-field label="Stock" formControlName="stock" />
+          <div *ngIf="produitForm.get('stock')?.hasError('required')" class="alert alert-danger">
+            Le stock est obligatoire
+         </div>
     @if (editingProduit) {
         <input type="submit" [disabled]="produitForm.invalid" class="btn btn-warning" value="Modifier" />
     }
-
+ 
     @else {
         <input type="submit" [disabled]="produitForm.invalid" class="btn btn-success" value="Ajouter" />
     }
@@ -18,11 +33,19 @@
     <thead>
         <tr>
             <th>Libellé</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Stock</th>
+
             <th></th>
         </tr>
 
         <tr *ngFor="let produit of produits$ | async">
             <td>{{ produit.libelle }}</td>
+            <td>{{ produit.description }}</td>
+            <td>{{ produit.prix }} €</td>
+            <td>{{ produit.stock }}</td>
+
             <td>
                 <div class="btn-group">
                     <div class="btn btn-warning" (click)="editProduit(produit)">Modifier</div>

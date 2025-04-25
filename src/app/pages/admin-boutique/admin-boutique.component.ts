@@ -20,7 +20,10 @@ export class AdminBoutiqueComponent implements OnInit, OnDestroy  {
 
   ngOnInit(): void {
     this.produitForm = this.formBuilder.group({
-      libelle: this.formBuilder.control('', Validators.required)
+      libelle: this.formBuilder.control('', Validators.required),
+      description: this.formBuilder.control('', Validators.required),
+      prix: this.formBuilder.control('', Validators.required),
+      stock: this.formBuilder.control('', Validators.required)
     });
     
     this.produits$ = this.service.findAll();
@@ -35,10 +38,16 @@ export class AdminBoutiqueComponent implements OnInit, OnDestroy  {
   public addOrEditProduit() {
     this.unsub('addOrEdit');
 
-    this.subscriptions['addOrEdit'] = this.service.save({
+    const produitData = {
       id: this.editingProduit?.id,
       ...this.produitForm.value
-    }).subscribe(() => this.service.refresh());
+    };
+
+    this.subscriptions['addOrEdit'] = this.service.save(produitData).subscribe(() => {
+      this.service.refresh();
+      this.produitForm.reset();
+      this.editingProduit = null;
+    });
 
     this.editingProduit = null;
     this.produitForm.get('libelle')?.setValue("");
@@ -46,6 +55,9 @@ export class AdminBoutiqueComponent implements OnInit, OnDestroy  {
 
   public editProduit(produit: Produit) {
     this.produitForm.get('libelle')?.setValue(produit.libelle);
+    this.produitForm.get('description')?.setValue(produit.description);
+    this.produitForm.get('prix')?.setValue(produit.prix);
+    this.produitForm.get('stock')?.setValue(produit.stock);
     this.editingProduit = produit;
   }
 

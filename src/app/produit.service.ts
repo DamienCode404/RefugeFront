@@ -10,7 +10,11 @@ import { Produit } from './produit';
 export class ProduitService {
   private refresh$: Subject<void> = new Subject<void>();
   private API_URL: string = `${ environment.API_URL }/produit`;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+
+
+   }
   public refresh() {
     this.refresh$.next();
   }
@@ -27,7 +31,11 @@ export class ProduitService {
   }
   public save(produit: any) {
     if (produit.id) {
-      return this.http.put<Produit>(`${ this.API_URL }/${ produit.id }`, produit);
+      return this.http.put<Produit>(`${ this.API_URL }/${ produit.id }`, produit, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      });
     }
     
     return this.http.post<Produit>(this.API_URL, produit);
