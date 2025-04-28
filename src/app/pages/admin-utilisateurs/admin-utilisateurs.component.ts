@@ -13,6 +13,7 @@ import { UtilisateursService } from './utilisateurs.service';
 export class AdminUtilisateursComponent {
   utilisateursForm!: FormGroup;
   utilisateurs$!: Observable<Utilisateurs[]>;
+  afficherForm: boolean = false;
   editingUtilisateurs!: Utilisateurs | null;
   subscriptions: any = [];
 
@@ -50,6 +51,8 @@ export class AdminUtilisateursComponent {
       this.utilisateursForm.reset();
       this.editingUtilisateurs = null;
     });
+
+    this.afficherForm = false;
   }
 
   public editUtilisateurs(utilisateur: Utilisateurs): void {
@@ -63,6 +66,7 @@ export class AdminUtilisateursComponent {
       phoneNumber: utilisateur.phoneNumber
     });
     this.editingUtilisateurs = utilisateur;
+    this.afficherForm = true;
   }
 
   public deleteUtilisateurs(utilisateurs: Utilisateurs) {
