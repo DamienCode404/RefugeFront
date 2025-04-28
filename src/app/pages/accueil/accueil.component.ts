@@ -19,22 +19,6 @@ export class AccueilComponent implements OnInit {
   constructor(private authService : AuthService, private router: Router, private service: AnimalService) {}
 
   ngOnInit(): void {
-
-    setTimeout(() => {
-      if (this.authService.user.roleUser == "ADMIN")
-        {
-          // this.router.navigate([ '/admin-utilisateurs' ]);
-        }
-      else if (this.authService.user.roleUser == "WORKER")
-        {
-          this.router.navigate([ '/benevole-profile' ]);
-        }
-      else if (this.authService.user.roleUser == "CLIENT")
-        {
-          this.router.navigate([ '/boutique' ]);
-        }
-      }, 500
-    )
     this.animaux$ = this.service.findAll();
   }
 }
