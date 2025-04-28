@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,5 +8,25 @@ import { Component } from '@angular/core';
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
+
+  //Dans la page nav le role sera "ADMIN", "WORKER" ou "CLIENT" si connecté et null sinon
+  private _role : string | null = null;
+
+  constructor(private authService : AuthService) 
+  {
+    if (this.authService.user) {console.log("there is a user"); this._role = this.authService.user.roleUser}
+    if (!this.authService.user) {console.log("there is no user");}
+  }
+
+
+  public get role()
+{
+    return this._role;
+}
+
+public set role(value : string | null)
+{
+    this._role = value;
+}
 
 }

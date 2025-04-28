@@ -1,0 +1,19 @@
+<form [formGroup]="searchForm">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="search"
+        placeholder="Recherche par race..."
+      />
+    </div>
+  </form>
+  
+  <div *ngIf="results.length > 0">
+    <ul>
+      <li *ngFor="let animal of results">
+        {{ animal.nom }} - {{ animal.race }}
+      </li>
+    </ul>
+  </div>
+  
