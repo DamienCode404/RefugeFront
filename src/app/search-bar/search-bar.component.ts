@@ -16,14 +16,16 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      search: ['']
+      search: [''],
+      ageFilter: ['']
     });
 
-    this.searchForm.get('search')!.valueChanges.pipe(
+    this.searchForm.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged()
-    ).subscribe(term => {
-      this.searchService.updateSearch(term);
+    ).subscribe(formValue => {
+      console.log('🔎 Mise à jour du formulaire', formValue);
+      this.searchService.updateSearch(formValue);
     });
   }
 }

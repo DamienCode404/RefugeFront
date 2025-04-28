@@ -5,10 +5,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchBarService {
-  private searchSubject = new BehaviorSubject<string>('');
+  private searchSubject = new BehaviorSubject<{search: string, ageFilter: string}>({search: '', ageFilter: ''});
   search$ = this.searchSubject.asObservable();
 
-  updateSearch(term: string) {
-    this.searchSubject.next(term);
+  updateSearch(formValue: {search: string, ageFilter: string}) {
+    this.searchSubject.next(formValue);
   }
 }
