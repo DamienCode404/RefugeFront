@@ -26,6 +26,8 @@
         La description est obligatoire
     </div>
 
+    <input formControlName="image" (change)="onImagePicked($event)" type="file" accept="image/*" /> 
+
     @if (editingAnimal) {
         <input type="submit" [disabled]="animalForm.invalid" class="btn btn-warning" value="Modifier" />
     }
@@ -43,6 +45,7 @@
             <th>Date de naissance</th>
             <th>Description</th>
             <th>ID worker</th>
+            <th>Image</th>
             <th></th>
         </tr>
 
@@ -52,6 +55,7 @@
             <td>{{ animal.naissance }}</td>
             <td>{{ animal.description }}</td>
             <td>{{ animal.idWorker }}</td>
+            <td>{{ animal.imageBase64 }}</td>
             <td>
                 <div class="btn-group">
                     <div class="btn btn-warning" (click)="editAnimal(animal)">Modifier</div>

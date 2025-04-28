@@ -18,12 +18,22 @@ export class AdminAnimauxComponent implements OnInit, OnDestroy {
 
   constructor(private service: AnimalService, private formBuilder: FormBuilder) { }
   
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement)?.files?.[0]; 
+    const reader = new FileReader();
+    reader.readAsDataURL(file!);
+    reader.onload = () => {
+        this.animalForm.patchValue({ imageBase64: reader.result});
+    };
+  }
+  
   ngOnInit(): void {
     this.animalForm = this.formBuilder.group({
       nom: ['', Validators.required],
       race: ['', Validators.required],
       naissance: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      imageBase64: ['', Validators.required]
     });
     
     this.animal$ = this.service.findAll();
