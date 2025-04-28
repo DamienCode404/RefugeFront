@@ -19,6 +19,17 @@ export class AdminUtilisateursComponent {
 
   constructor(private service: UtilisateursService, private formBuilder: FormBuilder) {}
   
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement)?.files?.[0]; 
+    const reader = new FileReader();
+    reader.readAsDataURL(file!);
+    reader.onload = () => {
+        this.utilisateursForm.patchValue({ imageBase64: reader.result});
+    };
+   
+  }
+  
+
   ngOnInit(): void {
     this.utilisateursForm = this.formBuilder.group({
       utilisateurType: ['', Validators.required],
@@ -27,7 +38,8 @@ export class AdminUtilisateursComponent {
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required]
+      phoneNumber: ['', Validators.required],
+      imageBase64: ['', Validators.required]
     });
 
     this.utilisateurs$ = this.service.findAll();

@@ -38,7 +38,9 @@
     <div *ngIf="utilisateursForm.get('phoneNumber')?.hasError('required')" class="alert alert-danger">
       Le téléphone est obligatoire
     </div>
-    
+
+    <input formControlName="image" (change)="onImagePicked($event)" type="file" accept="image/*" />
+
     @if (editingUtilisateurs) {
       <input type="submit" [disabled]="utilisateursForm.invalid" class="btn btn-warning" value="Modifier" />
     } @else {
@@ -62,6 +64,7 @@
     <th>Prénom</th>
     <th>Email</th>
     <th>Téléphone</th>
+    <th>Image</th>
     <th>Actions</th>
     </tr>
 </thead>
@@ -74,6 +77,15 @@
     <td>{{ utilisateur.firstName }}</td>
     <td>{{ utilisateur.email }}</td>
     <td>{{ utilisateur.phoneNumber }}</td>
+    <td>
+      <img
+      *ngIf="utilisateur.imageBase64"
+      [src]="'data:image/jpeg;base64,' + utilisateur.imageBase64"
+      class="card-img-top"
+      alt="{{ utilisateur.login }}"
+      style="height: 50px; width: 50px; object-fit: cover;"
+      />
+    </td>
     <td>
         <div class="btn-group">
         <div class="btn btn-warning" (click)="editUtilisateurs(utilisateur)">Modifier</div>

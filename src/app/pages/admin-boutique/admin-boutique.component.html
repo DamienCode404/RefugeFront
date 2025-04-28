@@ -52,7 +52,15 @@
             <td>{{ produit.description }}</td>
             <td>{{ produit.prix }} €</td>
             <td>{{ produit.stock }}</td>
-            <td>{{ produit.imageBase64 }}</td>
+            <td>
+                <img
+                *ngIf="produit.imageBase64"
+                [src]="'data:image/jpeg;base64,' + produit.imageBase64"
+                class="card-img-top"
+                alt="{{ produit.libelle }}"
+                style="height: 50px; width: 50px; object-fit: cover;"
+                />
+            </td>
             <td>
                 <div class="btn-group">
                     <div class="btn btn-warning" (click)="editProduit(produit)">Modifier</div>

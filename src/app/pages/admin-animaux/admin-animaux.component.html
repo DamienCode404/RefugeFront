@@ -65,7 +65,15 @@
             <td>{{ animal.naissance }}</td>
             <td>{{ animal.description }}</td>
             <td>{{ animal.idWorker }}</td>
-            <td>{{ animal.imageBase64 }}</td>
+            <td>
+                <img
+                *ngIf="animal.imageBase64"
+                [src]="'data:image/jpeg;base64,' + animal.imageBase64"
+                class="card-img-top"
+                alt="{{ animal.nom }}"
+                style="height: 50px; width: 50px; object-fit: cover;"
+              />
+            </td>
             <td>
                 <div class="btn-group">
                     <div class="btn btn-warning" (click)="editAnimal(animal)">Modifier</div>
