@@ -30,7 +30,8 @@
   
             <button 
               class="btn btn-primary btn-sm"
-              [disabled]="produit.stock === 0">
+              [disabled]="produit.stock === 0"
+              (click)="ajouterAuPanier(produit)">
               {{ produit.stock === 0 ? 'Indisponible' : 'Ajouter au panier' }}
             </button>
           </div>
