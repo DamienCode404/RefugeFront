@@ -58,8 +58,11 @@ export class PanierService {
       });
     });
   
-    // Une fois que tous les appels sont faits (en parallèle)
-    this._articles = []; // Le panier est vidé !
+   this._articles = []; 
     console.log("Panier vidé !");
+  }
+
+  acheterPanier() {
+    this._articles = [];
   }
 }
