@@ -18,6 +18,7 @@ import { BenevoleProfileComponent } from './pages/benevole-profile/benevole-prof
 import { BenevoleAjoutComponent } from './pages/benevole-ajout/benevole-ajout.component';
 import { jwtHeaderInterceptor } from './jwt-header.interceptor';
 import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component';
+import { BoutiqueDetailComponent } from './pages/boutique-detail/boutique-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +34,14 @@ import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component
     PanierComponent,
     BenevoleProfileComponent,
     BenevoleAjoutComponent,
-    AscTextFieldComponent
+    AscTextFieldComponent,
+    BoutiqueDetailComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule 
   ],
   providers: [
     provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ])) // Remplace l'import de HttpClientModule

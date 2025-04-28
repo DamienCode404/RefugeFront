@@ -11,6 +11,7 @@ import { BoutiqueComponent } from './pages/boutique/boutique.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { PanierComponent } from './pages/panier/panier.component';
 import { authGuard } from './auth.guard';
+import { BoutiqueDetailComponent } from './pages/boutique-detail/boutique-detail.component';
 
 const routes: Routes = [
   { path: 'home', component: AccueilComponent },
@@ -22,7 +23,9 @@ const routes: Routes = [
   { path: 'benevole-profile', component: BenevoleProfileComponent },
   { path: 'boutique', component: BoutiqueComponent },
   { path: 'inscription', component: InscriptionComponent },
-  { path: 'panier', component: PanierComponent }
+  { path: 'panier', component: PanierComponent },
+  { path: 'produit/:id', component: BoutiqueDetailComponent }
+
 ];
 
 @NgModule({
