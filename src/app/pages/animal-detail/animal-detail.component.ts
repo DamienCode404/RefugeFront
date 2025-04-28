@@ -10,6 +10,7 @@ import { AnimalService } from '../admin-animaux/animal.service';
   templateUrl: './animal-detail.component.html',
   styleUrl: './animal-detail.component.css'
 })
+
 export class AnimalDetailComponent {
   private _animal!: Animal;
 
@@ -30,5 +31,10 @@ export class AnimalDetailComponent {
 
   public get animal(): Animal {
     return this._animal;
+  }
+
+  public premierContact() {
+    this.animal.statut = "Reserve"
+    this.service.save(this.animal).subscribe(() => this.service.refresh());
   }
 }

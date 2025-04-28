@@ -21,12 +21,11 @@
   
         <p class="mt-4"><strong>Référent :</strong> {{ animal.idWorker }}</p>
         
-        <!-- <button 
+        <button 
           class="btn btn-primary btn-sm"
           (click)="premierContact()"
-          [disabled]="animal.stock === 0">
-          {{ animal.stock === 0 ? 'Indisponible' : 'Ajouter au panier' }}
-        </button> -->
+          [disabled]="animal.statut != 'Disponible'">Premier Contact
+        </button>
 
         <a [routerLink]="['/home']">
             <button class="btn btn-outline-primary mt-3">
