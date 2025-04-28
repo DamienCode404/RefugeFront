@@ -14,8 +14,7 @@ export class NavigationComponent {
 
   constructor(private authService : AuthService) 
   {
-    if (this.authService.user) {console.log("there is a user"); this._role = this.authService.user.roleUser}
-    if (!this.authService.user) {console.log("there is no user");}
+    if (this.authService.user) {this._role = this.authService.user.roleUser}
   }
 
 
