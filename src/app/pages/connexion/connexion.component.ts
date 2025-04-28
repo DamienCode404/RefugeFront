@@ -19,6 +19,11 @@ export class ConnexionComponent implements OnInit {
   constructor(private service: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    if (this.service.user)
+    {
+      this.router.navigate([ '/home' ]);
+    }
+
     this.loginCtrl = this.formBuilder.control('coucou_admin', Validators.required);
     this.passwordCtrl = this.formBuilder.control('coucou', [ Validators.required, Validators.minLength(6) ]);
 

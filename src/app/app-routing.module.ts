@@ -13,6 +13,7 @@ import { PanierComponent } from './pages/panier/panier.component';
 import { authGuard } from './auth.guard';
 
 const routes: Routes = [
+  { path: '', component: ConnexionComponent },
   { path: 'home', component: AccueilComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'admin-animaux', component: AdminAnimauxComponent },

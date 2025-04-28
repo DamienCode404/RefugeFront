@@ -39,7 +39,7 @@ import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule 
   ],
   providers: [
     provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ])) // Remplace l'import de HttpClientModule
