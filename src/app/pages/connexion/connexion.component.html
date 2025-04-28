@@ -1,31 +1,36 @@
-<form (ngSubmit)="authenticate()" [formGroup]="authForm">
-    <div>
-        <label>Nom d'utilisateur</label>
-        <input type="text" formControlName="login" />
-
-        <!-- <div *ngIf="authForm.get('login')?.hasError('required')">
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="bg-white p-5 rounded-4 shadow" style="max-width: 400px; width: 100%;">
+      <h2 class="text-center mb-4">CONNEXION</h2>
+  
+      <form (ngSubmit)="authenticate()" [formGroup]="authForm">
+  
+        <div class="mb-3">
+          <label class="form-label">Nom d'utilisateur</label>
+          <input type="text" class="form-control" formControlName="login" />
+  
+          <div *ngIf="loginCtrl?.hasError('required')" class="text-danger mt-1">
             Le nom d'utilisateur est obligatoire
-        </div> -->
-
-        <div *ngIf="loginCtrl?.hasError('required')">
-            Le nom d'utilisateur est obligatoire
+          </div>
         </div>
-    </div>
-
-    <div>
-        <label>Mot de passe</label>
-        <input type="password" formControlName="password" />
-
-        <div *ngIf="authForm.get('password')?.hasError('required')">
+  
+        <div class="mb-3">
+          <label class="form-label">Mot de passe</label>
+          <input type="password" class="form-control" formControlName="password" />
+  
+          <div *ngIf="authForm.get('password')?.hasError('required')" class="text-danger mt-1">
             Le mot de passe est obligatoire
-        </div>
-
-        <div *ngIf="passwordCtrl?.hasError('minlength')">
+          </div>
+  
+          <div *ngIf="passwordCtrl?.hasError('minlength')" class="text-danger mt-1">
             Le mot de passe doit faire au moins 6 caractères
+          </div>
         </div>
+  
+        <div class="d-grid">
+          <input type="submit" [disabled]="authForm.invalid" class="btn btn-success" value="Se connecter" />
+        </div>
+  
+      </form>
     </div>
-
-    <div>
-        <input type="submit" [disabled]="authForm.invalid" class="btn btn-success" value="Se connecter" />
-    </div>
-</form>
+  </div>
+  

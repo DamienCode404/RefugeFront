@@ -12,9 +12,10 @@ import { InscriptionComponent } from './pages/inscription/inscription.component'
 import { PanierComponent } from './pages/panier/panier.component';
 import { authGuard } from './auth.guard';
 import { BoutiqueDetailComponent } from './pages/boutique-detail/boutique-detail.component';
+import { AnimalDetailComponent } from './pages/animal-detail/animal-detail.component';
 
 const routes: Routes = [
-  { path: '', component: ConnexionComponent },
+  { path: '', component: AccueilComponent },
   { path: 'home', component: AccueilComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'admin-animaux', component: AdminAnimauxComponent },
@@ -25,8 +26,8 @@ const routes: Routes = [
   { path: 'boutique', component: BoutiqueComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'panier', component: PanierComponent },
-  { path: 'produit/:id', component: BoutiqueDetailComponent }
-
+  { path: 'produit/:id', component: BoutiqueDetailComponent },
+  { path: 'animal/:id', component: AnimalDetailComponent }
 ];
 
 @NgModule({

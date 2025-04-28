@@ -30,6 +30,10 @@ export class AnimalService {
     );
   }
 
+  public findById(id: number): Observable<Animal> {
+    return this.http.get<Animal>(`${ this.API_URL }/${ id }`);
+  }
+
   public save(animal: Animal) {
     if (animal.id) {
       return this.http.put<Animal>(`${ this.API_URL }/${ animal.id }`, animal);
