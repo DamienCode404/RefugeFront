@@ -22,6 +22,8 @@
         
         <input formControlName="image" (change)="onImagePicked($event)" type="file" accept="image/*" /> 
         
+        <br/>
+
         @if (editingProduit) {
             <input type="submit" [disabled]="produitForm.invalid" class="btn btn-warning" value="Modifier" />
         } @else {

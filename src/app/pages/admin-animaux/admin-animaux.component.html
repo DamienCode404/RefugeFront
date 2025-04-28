@@ -30,6 +30,8 @@
         
         <input formControlName="image" (change)="onImagePicked($event)" type="file" accept="image/*" /> 
         
+        <br/>
+
         @if (editingAnimal) {
             <input type="submit" [disabled]="animalForm.invalid" class="btn btn-warning" value="Modifier" />
         }
