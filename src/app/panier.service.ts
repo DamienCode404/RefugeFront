@@ -20,7 +20,6 @@ export class PanierService {
 
     this.produitService.decrementerStock(produit.id).subscribe({
       next: () => {
-        produit.stock -= 1; // A changer : le stocke décrémente localement
         console.log(`Stock du produit ${produit.libelle} diminué de 1`);
       },
       error: () => {

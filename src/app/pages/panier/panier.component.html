@@ -7,7 +7,6 @@
         <div>
           <h5>{{ produit.libelle }}</h5>
           <small>{{ produit.prix }} €</small>
-          <p class="mb-0 text-muted">Stock restant : {{ produit.stock }}</p>
         </div>
         <button class="btn btn-danger btn-sm" (click)="panierService.retirer(produit.id)">Supprimer</button>
       </li>
