@@ -14,6 +14,7 @@ import { authGuard } from './auth.guard';
 import { BoutiqueDetailComponent } from './pages/boutique-detail/boutique-detail.component';
 
 const routes: Routes = [
+  { path: '', component: ConnexionComponent },
   { path: 'home', component: AccueilComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'admin-animaux', component: AdminAnimauxComponent },

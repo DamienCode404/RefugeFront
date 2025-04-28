@@ -8,8 +8,16 @@ export class Client {
       private _numero: string,
       private _voie: string,
       private _ville: string,
-      private _cp: string
+      private _cp: string,
+      private _imageBase64: string
     ) {}
+  
+    public get imageBase64(): string {
+      return this._imageBase64;
+    }
+    public set imageBase64(value: string) {
+        this._imageBase64 = value;
+    }
   
     public get id(): number {
       return this._id;
