@@ -1,6 +1,14 @@
 export class Animal {
 
-    constructor(private _id: number, private _nom: string, private _race: string, private _naissance: string, private _description: string, private _idWorker : number|null, private _imageBase64: string) {}
+    constructor(
+        private _id: number, 
+        private _nom: string, 
+        private _race: string, 
+        private _naissance: string, 
+        private _description: string, 
+        private _idWorker : number|null, 
+        private _imageBase64: string
+    ) {}
 
 public get imageBase64(): string {
     return this._imageBase64;
