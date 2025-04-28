@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
+import { DeconnexionComponent } from './pages/deconnexion/deconnexion.component';
+
 import { AdminAnimauxComponent } from './pages/admin-animaux/admin-animaux.component';
 import { AdminBoutiqueComponent } from './pages/admin-boutique/admin-boutique.component';
 import { AdminUtilisateursComponent } from './pages/admin-utilisateurs/admin-utilisateurs.component';
@@ -18,6 +20,7 @@ const routes: Routes = [
   { path: '', component: AccueilComponent },
   { path: 'home', component: AccueilComponent },
   { path: 'connexion', component: ConnexionComponent },
+  { path: 'deconnexion', component: DeconnexionComponent },
   { path: 'admin-animaux', component: AdminAnimauxComponent },
   { path: 'admin-boutique', component: AdminBoutiqueComponent },
   { path: 'admin-utilisateurs', component: AdminUtilisateursComponent, canActivate: [ authGuard ] },

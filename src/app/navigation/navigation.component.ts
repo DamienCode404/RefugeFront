@@ -21,7 +21,7 @@ export class NavigationComponent {
 
   public get role()
 {
-    return this._role;
+    return this.authService.user?.roleUser;
 }
 
 public set role(value : string | null)
