@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Animal } from '../admin-animaux/animal';
 import { AnimalService } from '../admin-animaux/animal.service';
 import { AuthService } from '../../auth.service';
@@ -22,7 +22,9 @@ export class BenevoleProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.animal$ = this.service.findAll();
+    this.animal$ = this.service.findAll().pipe(
+      map(animal$ => animal$.filter(animal => animal.idWorker === this._id))
+    );
   }
 
   public get id()
