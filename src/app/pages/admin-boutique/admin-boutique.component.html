@@ -38,7 +38,7 @@
             <th>Description</th>
             <th>Prix</th>
             <th>Stock</th>
-
+            <th>Image</th>
             <th></th>
         </tr>
 
@@ -47,7 +47,7 @@
             <td>{{ produit.description }}</td>
             <td>{{ produit.prix }} €</td>
             <td>{{ produit.stock }}</td>
-
+            <td>{{ produit.imageBase64 }}</td>
             <td>
                 <div class="btn-group">
                     <div class="btn btn-warning" (click)="editProduit(produit)">Modifier</div>
