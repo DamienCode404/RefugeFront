@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Produit } from '../../produit';
 import { ActivatedRoute } from '@angular/router';
 import { ProduitService } from '../../produit.service';
+import { PanierService } from '../../panier.service';
 
 @Component({
   selector: 'app-boutique-detail',
@@ -15,7 +16,8 @@ export class BoutiqueDetailComponent implements OnInit {
   private _produit!: Produit;
   constructor(
     private route: ActivatedRoute,
-    private service: ProduitService
+    private service: ProduitService,
+    private panierService: PanierService
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +34,7 @@ export class BoutiqueDetailComponent implements OnInit {
     return this._produit;
   }
 
-
+  ajouterAuPanier(): void {
+    this.panierService.ajouter(this._produit);
+  }
 }
