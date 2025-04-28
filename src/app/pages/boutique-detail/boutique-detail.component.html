@@ -22,6 +22,10 @@
         {{ produit.stock === 0 ? 'Indisponible' : 'Ajouter au panier' }}
       </button>
 
+      <div *ngIf="produitAjoute" class="alert alert-success mt-3">
+        Le produit a bien été ajouté au panier !
+      </div>
+
       <div class="d-flex justify-content-center mt-4">
         <button class="btn btn-secondary" routerLink="/boutique">
           Retour à la boutique

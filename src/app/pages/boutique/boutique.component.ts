@@ -13,6 +13,7 @@ import { PanierService } from '../../panier.service';
 export class BoutiqueComponent implements OnInit {
   produits$!: Observable<Produit[]>;
   subscriptions: any = [];
+  produitAjoute: boolean = false;
 
   constructor(private service: ProduitService, private panierService: PanierService
   ) { }
@@ -23,5 +24,9 @@ export class BoutiqueComponent implements OnInit {
 
   ajouterAuPanier(produit: Produit): void {
     this.panierService.ajouter(produit);
+    this.produitAjoute = true;
+    setTimeout(() => {
+      this.produitAjoute = false;  
+    }, 3000);
   }
 }   
