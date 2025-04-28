@@ -13,6 +13,7 @@ import { AnimalService } from './animal.service';
 export class AdminAnimauxComponent implements OnInit, OnDestroy {
   animalForm!: FormGroup;
   animal$!: Observable<Animal[]>;
+  afficherForm: boolean = false;
   editingAnimal!: Animal | null;
   subscriptions: any = [];
 
@@ -57,6 +58,8 @@ export class AdminAnimauxComponent implements OnInit, OnDestroy {
     this.animalForm.get('race')?.setValue("");
     this.animalForm.get('naissance')?.setValue("");
     this.animalForm.get('description')?.setValue("");
+
+    this.afficherForm = false;
   }
 
   public editAnimal(animal: Animal) {
@@ -65,6 +68,8 @@ export class AdminAnimauxComponent implements OnInit, OnDestroy {
     this.animalForm.get('naissance')?.setValue(animal.naissance);
     this.animalForm.get('description')?.setValue(animal.description);
     this.editingAnimal = animal;
+
+    this.afficherForm = true;
   }
 
   public deleteAnimal(animal: Animal) {

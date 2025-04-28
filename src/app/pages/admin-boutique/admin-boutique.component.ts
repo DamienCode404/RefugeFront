@@ -13,6 +13,7 @@ import { ProduitService } from '../../produit.service';
 export class AdminBoutiqueComponent implements OnInit, OnDestroy  {
   produitForm!: FormGroup;
   produits$!: Observable<Produit[]>;
+  afficherForm: boolean = false;
   editingProduit!: Produit | null;
   subscriptions: any = [];
 
@@ -64,14 +65,20 @@ export class AdminBoutiqueComponent implements OnInit, OnDestroy  {
 
     this.editingProduit = null;
     this.produitForm.get('libelle')?.setValue("");
+
+    this.afficherForm = false;
   }
 
   public editProduit(produit: Produit) {
+
     this.produitForm.get('libelle')?.setValue(produit.libelle);
     this.produitForm.get('description')?.setValue(produit.description);
     this.produitForm.get('prix')?.setValue(produit.prix);
     this.produitForm.get('stock')?.setValue(produit.stock);
+    
     this.editingProduit = produit;
+    
+    this.afficherForm = true;
   }
 
   public deleteProduit(produit: Produit) {

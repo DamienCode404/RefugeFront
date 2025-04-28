@@ -22,6 +22,7 @@ import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
 import { BoutiqueDetailComponent } from './pages/boutique-detail/boutique-detail.component';
+import { AnimalDetailComponent } from './pages/animal-detail/animal-detail.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { BoutiqueDetailComponent } from './pages/boutique-detail/boutique-detail
 
     SearchBarComponent,
 
-    BoutiqueDetailComponent
+    BoutiqueDetailComponent,
+      AnimalDetailComponent
 
   ],
   imports: [

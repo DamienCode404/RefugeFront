@@ -7,7 +7,8 @@ export class Utilisateurs {
       private _lastName: string,
       private _firstName: string,
       private _email: string,
-      private _phoneNumber: string
+      private _phoneNumber: string,
+      private _imageBase64: string
     ) {}
   
     public get id(): number {
@@ -72,5 +73,11 @@ export class Utilisateurs {
   
     public set phoneNumber(value: string) {
       this._phoneNumber = value;
+    }
+    public get imageBase64(): string {
+      return this._imageBase64;
+    }
+    public set imageBase64(value: string) {
+        this._imageBase64 = value;
     }
 }  

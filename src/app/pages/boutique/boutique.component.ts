@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Produit } from '../../produit';
 import { ProduitService } from '../../produit.service';
+import { PanierService } from '../../panier.service';
 
 @Component({
   selector: 'app-boutique',
@@ -13,9 +14,14 @@ export class BoutiqueComponent implements OnInit {
   produits$!: Observable<Produit[]>;
   subscriptions: any = [];
 
-  constructor(private service: ProduitService) { }
+  constructor(private service: ProduitService, private panierService: PanierService
+  ) { }
 
   ngOnInit(): void {
     this.produits$ = this.service.findAll();
   }
-}
+
+  ajouterAuPanier(produit: Produit): void {
+    this.panierService.ajouter(produit);
+  }
+}   
