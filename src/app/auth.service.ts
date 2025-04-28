@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { AuthResponse } from './auth-response';
 import { AuthRequest } from './auth-request';
 import { environment } from '../environment';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class AuthService {
   public user!:any;
   private API_URL: string = `${ environment.API_URL }/connexion`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.token = localStorage.getItem('token') as string;
     this.user = JSON.parse(localStorage.getItem('user') as string) as any;
   }
@@ -28,4 +30,13 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(this.user));
     });
   }
+
+  public logout() {
+    this.token = "";
+    this.user = null;
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/connexion']);
+  }
+
 }

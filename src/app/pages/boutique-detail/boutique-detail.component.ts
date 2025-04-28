@@ -14,6 +14,7 @@ import { PanierService } from '../../panier.service';
 
 export class BoutiqueDetailComponent implements OnInit {
   private _produit!: Produit;
+  produitAjoute: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private service: ProduitService,
@@ -38,5 +39,9 @@ export class BoutiqueDetailComponent implements OnInit {
   ajouterAuPanier(): void {
     this.produit.stock -= 1;
     this.panierService.ajouter(this._produit);
+    this.produitAjoute = true;
+    setTimeout(() => {
+      this.produitAjoute = false;  
+    }, 3000);
   }
 }
