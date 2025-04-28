@@ -1,22 +1,23 @@
 <div class="container mt-5">
-    <h1>Mon Panier</h1>
-  
-    <div *ngIf="panierService.articles.length > 0; else vide">
-      <ul class="list-group mb-3">
-        <li *ngFor="let produit of panierService.articles" class="list-group-item d-flex justify-content-between align-items-center">
-          <div>
-            <h5>{{ produit.libelle }}</h5>
-            <small>{{ produit.prix }} €</small>
-          </div>
-          <button class="btn btn-danger btn-sm" (click)="panierService.retirer(produit.id)">Supprimer</button>
-        </li>
-      </ul>
-  
-      <h3 class="text-end">Total : {{ panierService.total }} €</h3>
-      <button class="btn btn-outline-danger mt-3" (click)="panierService.vider()">Vider le panier</button>
-    </div>
-  
-    <ng-template #vide>
-      <p>Votre panier est vide.</p>
-    </ng-template>
+  <h1>Mon Panier</h1>
+
+  <div *ngIf="panierService.articles.length > 0; else vide">
+    <ul class="list-group mb-3">
+      <li *ngFor="let produit of panierService.articles" class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <h5>{{ produit.libelle }}</h5>
+          <small>{{ produit.prix }} €</small>
+          <p class="mb-0 text-muted">Stock restant : {{ produit.stock }}</p>
+        </div>
+        <button class="btn btn-danger btn-sm" (click)="panierService.retirer(produit.id)">Supprimer</button>
+      </li>
+    </ul>
+
+    <h3 class="text-end">Total : {{ panierService.total }} €</h3>
+    <button class="btn btn-outline-danger mt-3" (click)="panierService.vider()">Vider le panier</button>
   </div>
+
+  <ng-template #vide>
+    <p>Votre panier est vide.</p>
+  </ng-template>
+</div>

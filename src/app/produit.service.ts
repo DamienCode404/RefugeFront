@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, startWith, Subject, switchMap } from 'rxjs';
+import { Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { environment } from '../environment';
 import { HttpClient } from '@angular/common/http';
 import { Produit } from './produit';
@@ -15,6 +15,7 @@ export class ProduitService {
   constructor(private http: HttpClient) {
 
    }
+   
   public refresh() {
     this.refresh$.next();
   }
@@ -46,5 +47,15 @@ export class ProduitService {
   
   public delete(produit: any) {
     return this.http.delete<void>(`${ this.API_URL }/${ produit.id }`);
+  }
+
+  public decrementerStock(produitId: number) {
+    const produit = this._produits.find(p => p.id === produitId);
+    if (produit && produit.stock > 0) {
+      produit.stock -= 1;
+      return this.http.put<Produit>(`${this.API_URL}/${produitId}`, produit);
+    }
+    console.log(produit);
+    return of(produit!);
   }
 }

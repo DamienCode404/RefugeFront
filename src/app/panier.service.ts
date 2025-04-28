@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Produit } from './produit';
+import { ProduitService } from './produit.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class PanierService {
 
   private _articles: Produit[] = [];
 
-  constructor() { }
+  constructor(private produitService: ProduitService) { }
 
   get articles(): Produit[] {
     return this._articles;
@@ -16,6 +17,16 @@ export class PanierService {
 
   ajouter(produit: Produit) {
     this._articles.push(produit);
+
+    this.produitService.decrementerStock(produit.id).subscribe({
+      next: () => {
+        produit.stock -= 1; // A changer : le stocke décrémente localement
+        console.log(`Stock du produit ${produit.libelle} diminué de 1`);
+      },
+      error: () => {
+        console.log(`Erreur lors de la diminution du stock pour ${produit.libelle}`);
+      }
+    });
   }
 
   retirer(id: number) {
