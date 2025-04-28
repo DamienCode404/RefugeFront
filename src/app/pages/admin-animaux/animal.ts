@@ -6,6 +6,7 @@ export class Animal {
         private _race: string, 
         private _naissance: string, 
         private _description: string, 
+        private _statut: string, 
         private _idWorker : number|null, 
         private _imageBase64: string
     ) {}
@@ -65,6 +66,16 @@ public get description()
 public set description(value : string)
 {
     this._description = value;
+}
+
+public get statut()
+{
+    return this._statut;
+}
+
+public set statut(value : string)
+{
+    this._statut = value;
 }
 
 public get idWorker()

@@ -27,10 +27,20 @@
         <div *ngIf="animalForm.get('description')?.hasError('required')" class="alert alert-danger">
             La description est obligatoire
         </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Statut</span>
+            <select class="form-control" formControlName="statut">
+                <option value="Disponible">Disponible</option>
+                <option value="Reserve">Réservé</option>
+                <option value="Adopte">Adopté</option>
+            </select>
+        </div>
         
-        <input formControlName="image" (change)="onImagePicked($event)" type="file" accept="image/*" /> 
+        <div>
+            <input formControlName="image" (change)="onImagePicked($event)" type="file" accept="image/*" /> 
+        </div>
         
-        <br/>
 
         @if (editingAnimal) {
             <input type="submit" [disabled]="animalForm.invalid" class="btn btn-warning" value="Modifier" />
@@ -54,6 +64,7 @@
             <th>Race</th>
             <th>Date de naissance</th>
             <th>Description</th>
+            <th>Statut</th>
             <th>ID worker</th>
             <th>Image</th>
             <th></th>
@@ -64,6 +75,7 @@
             <td>{{ animal.race }}</td>
             <td>{{ animal.naissance }}</td>
             <td>{{ animal.description }}</td>
+            <td>{{ animal.statut }}</td>
             <td>{{ animal.idWorker }}</td>
             <td>
                 <img
