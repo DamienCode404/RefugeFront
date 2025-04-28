@@ -17,7 +17,8 @@ export class BoutiqueDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: ProduitService,
-    private panierService: PanierService
+    private panierService: PanierService,
+
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +36,7 @@ export class BoutiqueDetailComponent implements OnInit {
   }
 
   ajouterAuPanier(): void {
+    this.produit.stock -= 1;
     this.panierService.ajouter(this._produit);
   }
 }
