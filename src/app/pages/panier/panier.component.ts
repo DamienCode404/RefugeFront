@@ -9,4 +9,8 @@ import { PanierService } from '../../panier.service';
 })
 export class PanierComponent {
   constructor(public panierService: PanierService) {}
+  acheterPanier(): void {
+    this.panierService.acheterPanier();  
+    console.log("Le panier a été vidé après l'achat.");
+  }
 }

@@ -34,6 +34,7 @@ export class AdminAnimauxComponent implements OnInit, OnDestroy {
       race: ['', Validators.required],
       naissance: ['', Validators.required],
       description: ['', Validators.required],
+      statut: ['', Validators.required],
       imageBase64: ['', Validators.required]
     });
     
@@ -50,6 +51,7 @@ export class AdminAnimauxComponent implements OnInit, OnDestroy {
 
     this.subscriptions['addOrEdit'] = this.service.save({
       id: this.editingAnimal?.id,
+      idWorker: this.editingAnimal?.idWorker,
       ...this.animalForm.value
     }).subscribe(() => this.service.refresh());
 
@@ -58,6 +60,7 @@ export class AdminAnimauxComponent implements OnInit, OnDestroy {
     this.animalForm.get('race')?.setValue("");
     this.animalForm.get('naissance')?.setValue("");
     this.animalForm.get('description')?.setValue("");
+    this.animalForm.get('statut')?.setValue("");
 
     this.afficherForm = false;
   }
@@ -67,6 +70,7 @@ export class AdminAnimauxComponent implements OnInit, OnDestroy {
     this.animalForm.get('race')?.setValue(animal.race);
     this.animalForm.get('naissance')?.setValue(animal.naissance);
     this.animalForm.get('description')?.setValue(animal.description);
+    this.animalForm.get('statut')?.setValue(animal.statut);
     this.editingAnimal = animal;
 
     this.afficherForm = true;

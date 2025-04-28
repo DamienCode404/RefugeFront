@@ -61,16 +61,29 @@ export class ProduitService{
     return this.http.delete<void>(`${ this.API_URL }/${ produit.id }`);
   }
 
-public decrementerStock(produitId: number) {
-  const produit = this._produits.find(p => p.id === produitId);
-  console.log("Produit à décrémenter:", produit);
+  public decrementerStock(produitId: number) {
+    const produit = this._produits.find(p => p.id === produitId);
+    console.log("Produit à décrémenter:", produit);
 
-  if (produit && produit.stock > 0) {
-    produit.stock -= 1;
-    return this.http.put<Produit>(`${this.API_URL}/${produitId}`, produit);
-  } else {
-    console.log("Produit introuvable ou stock insuffisant");
-    return of(produit!);
+    if (produit && produit.stock > 0) {
+      produit.stock -= 1;
+      return this.http.put<Produit>(`${this.API_URL}/${produitId}`, produit);
+    } else {
+      console.log("Produit introuvable ou stock insuffisant");
+      return of(produit!);
+    }
   }
-}
+
+  public restaurerStock(produitId: number, quantite: number = 1) {
+    const produit = this._produits.find(p => p.id === produitId);
+    console.log("Produit à restaurer:", produit);
+  
+    if (produit) {
+      produit.stock += quantite;
+      return this.http.put<Produit>(`${this.API_URL}/${produitId}`, produit);
+    } else {
+      console.log("Produit introuvable pour restauration du stock");
+      return of(produit!);
+    }
+  }
 }
