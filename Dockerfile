@@ -28,6 +28,7 @@ WORKDIR /app
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copier du container de fabrication "build" les fichiers dans la destination NGINX
-COPY --from=build /app/dist/RefugeFront/browser/* /usr/share/nginx/html/
+COPY --from=build /app/dist/refuge-front/browser/* /usr/share/nginx/html/
+
 
 EXPOSE 80
